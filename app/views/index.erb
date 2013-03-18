@@ -1,38 +1,43 @@
-<form action="/" value="post">
+<form action="/" method="post">
   <label>Player 1's Name</label>
-  <input type="text" name="player1">
+  <input type="text" name="form1[name]">
   <label>Player 2's Name</label>
-  <input type="text" name="player2">
+  <input type="text" name="form2[name]">
   <input type="submit" value="Play the game!">
 </form>
+<div id='container'>
+  <br>
+  <span>Player 1 hit Q as fast as possible</span>
+  
+  <table class="racer_table">
 
-<table class="racer_table">
+    <tr id="player1_strip">
+      <td class="active"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
 
-  <tr id="player1_strip">
-    <td class="active"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-
-  <tr id="player2_strip">
-    <td class="active"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+    <tr id="player2_strip">
+      <td class="active"></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <span>Player 2 hit P as fast as possible</span>
+</div>
