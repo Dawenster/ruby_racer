@@ -9,3 +9,7 @@
 .racer_table td.active {
   background-color: blue;
 }
+
+.opaque {
+  opacity:0.2;
+}
