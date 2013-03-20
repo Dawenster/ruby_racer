@@ -8,36 +8,31 @@ end
 
 post '/' do
   content_type :json
-  player1 = Player.find_or_create_by_name(params[:form1][:name].downcase.strip)
-  player2 = Player.find_or_create_by_name(params[:form2][:name].downcase.strip)
   
-  game = Game.new(:player1_id => player1.id, :player2_id => player2.id)
-  game.save!
-
-  if game.save!
-  
-    session[:game] = game.id
-    session[:start_time] = Time.new
-    status 200
-    game.to_json
-  else
-    status 400
-  end
 end
-
 
 post '/game_over' do
   content_type :json
-  session[:end_time] = Time.new
-  elapsed_time = session[:end_time] - session[:start_time]
-
-  if params[:winning_id] == "player1"
-    @game.update_attributes(:winner => @game.player1_id, :time => elapsed_time.to_s)
+  puts params
+  player1 = Player.find_or_create_by_name(params[:player1][:name].downcase.strip)
+  player2 = Player.find_or_create_by_name(params[:player2][:name].downcase.strip)
+  
+  if params[:winner][:name] == player1.name
+    winner = player1
   else
-    @game.update_attributes(:winner => @game.player2_id, :time => elapsed_time.to_s)
+    winner = player2
   end
-  puts "about to redirect"
-  "/game/#{@game.url}".to_json
+
+  puts params[:elapsedTime]
+
+  game = Game.new(:player1_id => player1.id, :player2_id => player2.id, :time => params[:elapsedTime], :winner => winner.id)
+
+  if game.save
+    status 200
+    "/game/#{game.url}".to_json
+  else
+    status 400
+  end
 end
 
 get '/game/all_stats' do
