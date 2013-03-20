@@ -16,7 +16,21 @@ $(document).ready(function() {
 		  game = new Game(player1, player2, p1Length, p2Length);
 
 		  randKey = Math.floor((Math.random()*25)+65);
-		  gamePlay();
-		}
+		  $("#container").removeClass("opaque");
+		  $(function(){
+			  var count = 3;
+			  countdown = setInterval(function(){
+			    if (count > 0) {
+			    	$("#container h2").html("Starting in: " + count);	
+			    }
+			    else {
+			    	clearInterval(countdown);
+			    	$("#container h2").html("GO!");
+			    	gamePlay();
+			    }
+			    count--;
+			  }, 1000);
+			});
+	  }
 	});
 });
